@@ -1,6 +1,25 @@
 import { Controller } from "stimulus";
 import { Holistic } from '@mediapipe/holistic/holistic';
 import { Camera } from '@mediapipe/camera_utils/camera_utils';
+import {
+  drawConnectors,
+  drawLandmarks,
+} from '@mediapipe/drawing_utils/drawing_utils';
+import {
+  POSE_LANDMARKS,
+  POSE_LANDMARKS_LEFT,
+  POSE_LANDMARKS_RIGHT,
+  POSE_CONNECTIONS,
+  HAND_CONNECTIONS,
+  FACEMESH_TESSELATION,
+  FACEMESH_RIGHT_EYE,
+  FACEMESH_RIGHT_EYEBROW,
+  FACEMESH_LEFT_EYE,
+  FACEMESH_LEFT_EYEBROW,
+  FACEMESH_FACE_OVAL,
+  FACEMESH_LIPS,
+  VERSION,
+} from "@mediapipe/holistic/holistic";
 // import { Hands  } from '@mediapipe/hands/hands';
 
 export default class extends Controller {
@@ -16,7 +35,7 @@ export default class extends Controller {
 //   Which elements of this code from documentation do we use/edit?
     // --> tbd
 //   Everything we learned in Stimulus is about Listening for specific actions and then giving a response, is this in the connect() initializer?
-//   Is this entire code going into initializer?  do we split it?  
+//   Is this entire code going into initializer?  do we split it?
 
 const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
@@ -37,7 +56,7 @@ function onResults(results) {
   canvasCtx.fillStyle = '#00FF00';
   canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
 
-  // Only overwrite missing pixels. --> 
+  // Only overwrite missing pixels. -->
   canvasCtx.globalCompositeOperation = 'destination-atop';
   canvasCtx.drawImage(
       results.image, 0, 0, canvasElement.width, canvasElement.height);
