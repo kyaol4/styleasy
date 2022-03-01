@@ -50,11 +50,21 @@ function onResults(results) {
   canvasCtx.drawImage(results.segmentationMask, 0, 0,
                       canvasElement.width, canvasElement.height);
   // random shit about drawing the shapes, assume we copy paste this
-
+  let activeEffect = "mask";
   // Only overwrite existing pixels. --> wtf this mean?
-  canvasCtx.globalCompositeOperation = 'source-in';
-  canvasCtx.fillStyle = '#00FF00';
-  canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+  // canvasCtx.globalCompositeOperation = 'source-in';
+  // canvasCtx.fillStyle = 'none';
+  // canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+  if (activeEffect === "mask" || activeEffect === "both") {
+    canvasCtx.globalCompositeOperation = "source-in";
+    // This can be a color or a texture or whatever...
+    canvasCtx.fillStyle = "#00000000";
+    canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+  } else {
+    canvasCtx.globalCompositeOperation = "source-out";
+    canvasCtx.fillStyle = "#00000000";
+    canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+  }
 
   // Only overwrite missing pixels. -->
   canvasCtx.globalCompositeOperation = 'destination-atop';
