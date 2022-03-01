@@ -41,3 +41,26 @@ User.create!(
   top_size: "M",
   bottom_size: "M"
 )
+
+puts "destroying shops"
+Shop.destroy_all
+puts "creating shops"
+
+Shop.create!(
+  shopify_domain: "bbb",
+  shopify_token: "ccc"
+)
+
+puts "destroying items"
+Item.destroy_all
+puts "creating items"
+
+item = Item.create!(
+  size: ["S", "M", "L"].sample,
+  price: rand(1000..10_000),
+  brand: "aa",
+  shop_id: Shop.first.id
+)
+
+item.photos.attach(io: File.open(Rails.root.join('app/assets/images/dress1.png')), filename: 'dress1.png')
+puts 'loading photo'
