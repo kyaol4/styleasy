@@ -2,6 +2,10 @@
   "name": "styleasy",
   "private": true,
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1640029074",
+    "@mediapipe/control_utils": "^0.6.1629159505",
+    "@mediapipe/drawing_utils": "^0.3.1620248257",
+    "@mediapipe/holistic": "^0.5.1635989137",
     "@popperjs/core": "^2.11.2",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
