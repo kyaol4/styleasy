@@ -6,19 +6,8 @@ import {
   drawLandmarks,
 } from '@mediapipe/drawing_utils/drawing_utils';
 import {
-  POSE_LANDMARKS,
-  POSE_LANDMARKS_LEFT,
-  POSE_LANDMARKS_RIGHT,
   POSE_CONNECTIONS,
   HAND_CONNECTIONS,
-  FACEMESH_TESSELATION,
-  FACEMESH_RIGHT_EYE,
-  FACEMESH_RIGHT_EYEBROW,
-  FACEMESH_LEFT_EYE,
-  FACEMESH_LEFT_EYEBROW,
-  FACEMESH_FACE_OVAL,
-  FACEMESH_LIPS,
-  VERSION,
 } from "@mediapipe/holistic/holistic";
 // import { Hands  } from '@mediapipe/hands/hands';
 
@@ -26,16 +15,6 @@ export default class extends Controller {
   static targets = [ "output" ]
 
   connect() {
-    // Issues:
-//   How do we get started?  Code below is copied from documentation, is this code even relevant?
-//   --> need js controller to handle these actions.  they wrote it inside html script and put js in, but we need to take it out into the connect()
-//   Which js file do we use this code in?
-//   What other files do we need to create?
-    // --> tbd
-//   Which elements of this code from documentation do we use/edit?
-    // --> tbd
-//   Everything we learned in Stimulus is about Listening for specific actions and then giving a response, is this in the connect() initializer?
-//   Is this entire code going into initializer?  do we split it?
 
 const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
@@ -46,11 +25,12 @@ const canvasCtx = canvasElement.getContext('2d');
 function onResults(results) {
   canvasCtx.save();
   // save the 2d pic
+
   canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
   canvasCtx.drawImage(results.segmentationMask, 0, 0,
                       canvasElement.width, canvasElement.height);
   // console.log(canvasCtx.drawImage)
-                      // random shit about drawing the shapes, assume we copy paste this
+ 
   let activeEffect = "mask";
   // Only overwrite existing pixels. --> wtf this mean?
   // canvasCtx.globalCompositeOperation = 'source-in';
@@ -71,14 +51,12 @@ function onResults(results) {
   canvasCtx.globalCompositeOperation = 'destination-atop';
   canvasCtx.drawImage(
       results.image, 0, 0, canvasElement.width, canvasElement.height);
-    // console.log(results.poseLandmarks[11])
+    // console.log(results.poseLandmarks[0])
   canvasCtx.globalCompositeOperation = 'source-over';
   drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
                  {color: '#00FF00', lineWidth: 4});
   drawLandmarks(canvasCtx, results.poseLandmarks,
                 {color: '#FF0000', lineWidth: 2});
-  drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
-                 {color: '#C0C0C070', lineWidth: 1});
   drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS,
                  {color: '#CC0000', lineWidth: 5});
   drawLandmarks(canvasCtx, results.leftHandLandmarks,
@@ -89,10 +67,13 @@ function onResults(results) {
                 {color: '#FF0000', lineWidth: 2});
   canvasCtx.restore();
   // console.log(results.poseLandmarks[11])
+  // console.log(results.poseLandmarks[12])
 let canvas = document.getElementById("mediapipe");
 let ctx = canvas.getContext("2d");
 let img = document.getElementById("media-pipe");
-ctx.drawImage(img, results.poseLandmarks[11]["y"] * 500,results.poseLandmarks[0]["y"] * 1200, 700, 700);
+console.log(img.attributes)
+
+ctx.drawImage(img, results.poseLandmarks[11]["y"] * 500, results.poseLandmarks[0]["y"] * 1500, 800, 800 );
 }
 
 {/* this defines function Holistic, which calls the file (what file?  svg?  video?) */}
