@@ -73,12 +73,12 @@ function onResults(results) {
       results.image, 0, 0, canvasElement.width, canvasElement.height);
     // console.log(results.poseLandmarks[11])
   canvasCtx.globalCompositeOperation = 'source-over';
-  drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
-                 {color: '#00FF00', lineWidth: 4});
+  // drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
+  //                {color: '#00FF00', lineWidth: 4});
   drawLandmarks(canvasCtx, results.poseLandmarks,
                 {color: '#FF0000', lineWidth: 2});
-  drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
-                 {color: '#C0C0C070', lineWidth: 1});
+  // drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
+  //                {color: '#C0C0C070', lineWidth: 1});
   drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS,
                  {color: '#CC0000', lineWidth: 5});
   drawLandmarks(canvasCtx, results.leftHandLandmarks,
@@ -92,7 +92,8 @@ function onResults(results) {
 let canvas = document.getElementById("mediapipe");
 let ctx = canvas.getContext("2d");
 let img = document.getElementById("media-pipe");
-ctx.drawImage(img, results.poseLandmarks[11]["y"] * 500,results.poseLandmarks[0]["y"] * 1200, 700, 700);
+console.log(results.poseLandmarks)
+ctx.drawImage(img, results.poseLandmarks[11]["y"] * 180,results.poseLandmarks[0]["y"] * 1200, 1000, 1000);
 }
 
 {/* this defines function Holistic, which calls the file (what file?  svg?  video?) */}
