@@ -88,11 +88,11 @@ function onResults(results) {
   drawLandmarks(canvasCtx, results.rightHandLandmarks,
                 {color: '#FF0000', lineWidth: 2});
   canvasCtx.restore();
-  console.log(results.poseLandmarks[11]["x"])
+  // console.log(results.poseLandmarks[11])
 let canvas = document.getElementById("mediapipe");
 let ctx = canvas.getContext("2d");
 let img = document.getElementById("media-pipe");
-ctx.drawImage(img, results.poseLandmarks[3]["x"] * 100,results.poseLandmarks[11]["x"] * 100);
+ctx.drawImage(img, results.poseLandmarks[11]["y"] * 500,results.poseLandmarks[0]["y"] * 1200, 700, 700);
 }
 
 {/* this defines function Holistic, which calls the file (what file?  svg?  video?) */}
