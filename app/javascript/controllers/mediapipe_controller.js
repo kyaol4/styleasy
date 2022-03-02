@@ -49,7 +49,8 @@ function onResults(results) {
   canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
   canvasCtx.drawImage(results.segmentationMask, 0, 0,
                       canvasElement.width, canvasElement.height);
-  // random shit about drawing the shapes, assume we copy paste this
+  // console.log(canvasCtx.drawImage)
+                      // random shit about drawing the shapes, assume we copy paste this
   let activeEffect = "mask";
   // Only overwrite existing pixels. --> wtf this mean?
   // canvasCtx.globalCompositeOperation = 'source-in';
@@ -70,7 +71,7 @@ function onResults(results) {
   canvasCtx.globalCompositeOperation = 'destination-atop';
   canvasCtx.drawImage(
       results.image, 0, 0, canvasElement.width, canvasElement.height);
-
+    // console.log(results.poseLandmarks[11])
   canvasCtx.globalCompositeOperation = 'source-over';
   drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
                  {color: '#00FF00', lineWidth: 4});
@@ -87,6 +88,11 @@ function onResults(results) {
   drawLandmarks(canvasCtx, results.rightHandLandmarks,
                 {color: '#FF0000', lineWidth: 2});
   canvasCtx.restore();
+  console.log(results.poseLandmarks[11]["x"])
+let canvas = document.getElementById("mediapipe");
+let ctx = canvas.getContext("2d");
+let img = document.getElementById("media-pipe");
+ctx.drawImage(img, results.poseLandmarks[3]["x"] * 100,results.poseLandmarks[11]["x"] * 100);
 }
 
 {/* this defines function Holistic, which calls the file (what file?  svg?  video?) */}
@@ -105,6 +111,8 @@ holistic.setOptions({
 holistic.onResults(onResults);
 {/* passing file, we run onResults function above to render canvas or smth */}
 
+// console.log(onResults)
+
 const camera = new Camera(videoElement, {
   onFrame: async () => {
     await holistic.send({image: videoElement});
@@ -114,5 +122,7 @@ const camera = new Camera(videoElement, {
 });
 camera.start();
 {/* start the webcam/camera with Holistic function */}
+
   }
+
 }
