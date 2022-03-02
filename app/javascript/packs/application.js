@@ -14,3 +14,4 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+require("shopify_app")

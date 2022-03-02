@@ -1,5 +1,8 @@
-class Shop < ApplicationRecord
-  has_many :items, dependent: :destroy
-  validates :shopify_domain, presence: true
-  validates :shopify_token, presence: true
+# frozen_string_literal: true
+class Shop < ActiveRecord::Base
+  include ShopifyApp::ShopSessionStorageWithScopes
+
+  def api_version
+    ShopifyApp.configuration.api_version
+  end
 end
