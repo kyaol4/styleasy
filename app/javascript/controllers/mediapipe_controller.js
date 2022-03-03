@@ -75,18 +75,27 @@ function onResults(results) {
 let canvas = document.getElementById("mediapipe");
 let ctx = canvas.getContext("2d");
 let img = document.getElementById("media-pipe");
-// console.log(results.poseLandmarks)
+// console.log(results.poseLandmarks[11]["x"], results.poseLandmarks[12]["x"] )
 const shoulderDistance = Math.abs(results.poseLandmarks[11]["x"] - results.poseLandmarks[12]["x"]);
 const width = shoulderDistance * 2;
 const height = width * img.height/img.width;
-const xAxis = results.poseLandmarks[11]["x"] + shoulderDistance / 2 - width/2;
+let xAxis = results.poseLandmarks[11]["x"] + shoulderDistance / 2 - width / 2;
 const yAxis = results.poseLandmarks[11]["y"] + 1
 // + shoulderDistance / 2 - width/2;
 // ctx.drawImage(img, results.poseLandmarks[11]["y"] * 180,results.poseLandmarks[0]["y"] * 1200, 1000, 1000);
 // console.log(shoulderDistance, width, height, xAxis, yAxis);
-console.log(results.poseLandmarks[11]["y"] * 180,results.poseLandmarks[0]["y"] * 1200)
-console.log(xAxis * 180, yAxis * 1200, width * 1000, height * 1000)
-ctx.drawImage(img, xAxis * 550, yAxis * 200, width * 1000, height * 1000);
+// console.log(results.poseLandmarks[11]["y"] * 180,results.poseLandmarks[0]["y"] * 1200)
+// console.log(xAxis * 180, yAxis * 1200, width * 1000, height * 1000)
+if (height > 0.7) {
+  canvasCtx.drawImage(img, xAxis * 500, yAxis * 200, width * 1000, height * 1000);
+} else {
+  canvasCtx.drawImage(img, xAxis * 800, yAxis * 200, width * 1000, height * 1000);
+}
+
+console.log(xAxis)
+// if (height * 1000 < 1 ) {
+//   xAxis = results.poseLandmarks[11]["x"] + shoulderDistance * 1.5;
+// }
 }
 
 {/* this defines function Holistic, which calls the file (what file?  svg?  video?) */}
