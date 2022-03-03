@@ -25,9 +25,9 @@ export default class extends Controller {
         results.poseLandmarks[12]["x"] - results.poseLandmarks[11]["x"]
       );
       const imgRatio = (img.height / img.width);
-      const width = shoulderDistance * 1.9;
+      const width = shoulderDistance * 1.6;
       const height = width * imgRatio;
-      const distShouldNeck = 0.425;
+      const distShouldNeck = 0.39;
       return {
         element: img,
         shoulderDistance: shoulderDistance,
