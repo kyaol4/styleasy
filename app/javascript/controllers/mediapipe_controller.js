@@ -80,16 +80,16 @@ const shoulderDistance = Math.abs(results.poseLandmarks[11]["x"] - results.poseL
 const width = shoulderDistance * 2;
 const height = width * img.height/img.width;
 let xAxis = results.poseLandmarks[11]["x"] + shoulderDistance / 2 - width / 2;
-const yAxis = results.poseLandmarks[11]["y"] + 1
+let yAxis = results.poseLandmarks[11]["y"] + 1
 // + shoulderDistance / 2 - width/2;
 // ctx.drawImage(img, results.poseLandmarks[11]["y"] * 180,results.poseLandmarks[0]["y"] * 1200, 1000, 1000);
 // console.log(shoulderDistance, width, height, xAxis, yAxis);
 // console.log(results.poseLandmarks[11]["y"] * 180,results.poseLandmarks[0]["y"] * 1200)
 // console.log(xAxis * 180, yAxis * 1200, width * 1000, height * 1000)
 if (height > 0.7) {
-  canvasCtx.drawImage(img, xAxis * 500, yAxis * 200, width * 1000, height * 1000);
+  canvasCtx.drawImage(img, xAxis * 450, yAxis * 200, width * 1000, height * 1000);
 } else {
-  canvasCtx.drawImage(img, xAxis * 800, yAxis * 200, width * 1000, height * 1000);
+  canvasCtx.drawImage(img, xAxis * 850, yAxis * 210, width * 1000, height * 1000);
 }
 
 console.log(xAxis)
