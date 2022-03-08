@@ -1,0 +1,15 @@
+#AR {
+  position: relative;
+}
+
+#AR::before {
+  content: " ";
+  position: absolute;
+  width: 200px;
+  height: 27px;
+  opacity: .6;
+  left: 20px;
+  top: 20px;
+  background: url("STYLEASY_logo.png");
+  background-size: cover;
+}
