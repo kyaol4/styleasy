@@ -1,7 +1,14 @@
-<button is="party-button">
-  <span class="visually-hidden">Start the party!</span>
+{% comment %} ADD BUTTON THIS CODE TO ADD-EMBED FILE {% endcomment %}
+<button id='ARbutton' type="submit" name="add" class="product-form__submit button button--full-width button--secondary">
+  <span>AR Dressing Room</span>
+  <div class="loading-overlay__spinner hidden">
+    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+    </svg>
+  </div>
 </button>
 
+{% comment %}
 <style>
   .visually-hidden {
     position: absolute!important;
@@ -14,7 +21,7 @@
     clip: rect(0 0 0 0);
     word-wrap: normal!important;
   }
-  
+
   @-webkit-keyframes rainbow {
     0% {border-color: hsl(0, 100%, 50%);}
     14% {border-color: hsl(30,100%,50%);}
@@ -57,13 +64,15 @@
     display: initial;
   }
 </style>
+{% endcomment %}
 
 {% schema %}
 {
-  "name": "Party",
-  "target": "body",
-  "stylesheet": "image-gallery.css",
-  "javascript": "party-button.js",
+  "name": "Button",
+  "target": "section",
+  "stylesheet": "app-embed.css",
+  "javascript": "button.js",
+  "templates": ["product"],
   "settings": []
 }
 {% endschema %}

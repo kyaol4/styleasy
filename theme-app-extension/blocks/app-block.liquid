@@ -1,92 +1,41 @@
-<image-gallery data-id="{{ block.id }}">
-  {%- if block.settings.heading -%}
-    <h2>{{ block.settings.heading }}</h2>
-  {%- endif -%}
+{% comment %} ADD THIS TO SEPERATE JSFILE IN ASSETS {% endcomment %}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" defer="defer" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" defer="defer" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" defer="defer" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" defer="defer" crossorigin="anonymous"></script>
+<script type="module" defer="defer"></script>
 
-  {%- if block.settings.description -%}
-    <p>{{ block.settings.description }}</p>
-  {%- endif -%}
+<div id='AR' style="display:none">
+  {% for image in product.images offset:2 limit:1 %} {% comment %} WE NEED TO SET "PRODUCT" AS A VARIABLE IN SETTINGS IN SCHEMA {% endcomment %}
+     {% assign imgSrc = image.src | img_url: '600x' %}
+  {% endfor %}
+  <video hidden class="input_video"></video>
+  <canvas id="mediapipe" class="output_canvas" width="1100px" height="720px"></canvas>
+  <img src="https:{{imgSrc}}" class='hidden' id='media-pipe' width=image.width height=image.height>
+<!-- 	<video class="input_video"></video>
+  <canvas class="output_canvas" width="1280px" height="720px"></canvas> -->
+</div>
 
-  <div class="gallery">
-    <figure class="gallery__item gallery__item--1">
-      {%- if block.settings.image_1 -%}
-        <img src="{{ block.settings.image_1 | image_url: width: 1024 }}" alt="{{ block.settings.image_1.alt }}" loading="lazy" width="{{ block.settings.image_1.width }}" height="{{ block.settings.image_1.height }}">
-      {%- else -%}
-        <img src="{{ 'party-hat-frenchie.jpg' | asset_url }}" loading="lazy" width="925" height="617">
-      {%- endif -%}
-    </figure>
-    <figure class="gallery__item gallery__item--2">
-      {%- if block.settings.image_2 -%}
-        <img src="{{ block.settings.image_2 | image_url: width: 1024 }}" alt="{{ block.settings.image_2.alt }}" loading="lazy" width="{{ block.settings.image_2.width }}" height="{{ block.settings.image_2.height }}">
-      {%- else -%}
-        <img src="{{ 'dog-in-birthday-hat.jpg' | asset_url }}" loading="lazy" width="925" height="617">
-      {%- endif -%}
-    </figure>
-    <figure class="gallery__item gallery__item--3">
-      {%- if block.settings.image_3 -%}
-        <img src="{{ block.settings.image_3 | image_url: width: 1024 }}" alt="{{ block.settings.image_3.alt }}" loading="lazy" width="{{ block.settings.image_3.width }}" height="{{ block.settings.image_3.height }}">
-      {%- else -%}
-        <img src="{{ 'all-dogs-go-to-birthday.jpg' | asset_url }}" loading="lazy" width="925" height="921">
-      {%- endif -%}
-    </figure>
-    <figure class="gallery__item gallery__item--4">
-      {%- if block.settings.image_4 -%}
-        <img src="{{ block.settings.image_4 | image_url: width: 1024 }}" alt="{{ block.settings.image_4.alt }}" loading="lazy" width="{{ block.settings.image_4.width }}" height="{{ block.settings.image_4.height }}">
-      {%- else -%}
-        <img src="{{ 'poochie-party-treats.jpg' | asset_url }}" loading="lazy" width="925" height="617">
-      {%- endif -%}
-    </figure>
-  </div>
+<script src="{{ 'mediapipe.js' | asset_url }}" defer></script>
 
-  <image-popup init>
-    <template image-popup>
-      <button close-button class="close-button">
-        {%- render 'icon-close' -%}
-      </button>
-    </template>
-  </image-popup>
-
-</image-gallery>
-
-{% schema %}
+  {% schema %}
   {
-    "name": "Image Gallery",
+    "name": "Test App",
     "target": "section",
-    "stylesheet": "image-gallery.css",
-    "javascript": "image-gallery.js",
-    "templates": ["product", "index"],
+    "templates": ["product"],
     "settings": [
       {
         "type": "text",
         "id": "heading",
         "label": "Heading",
-        "default": "Cute Puppy Gallery"
+        "default": "Test app"
       },
       {
         "type": "text",
         "id": "description",
         "label": "Description",
         "default": "A simple app block that shows a grid of images that can be customized by the merchant. Each image can be selected to show a popup with the full-sized image."
-      },
-      {
-        "type": "image_picker",
-        "id": "image_1",
-        "label": "Image 1"
-      },
-      {
-        "type": "image_picker",
-        "id": "image_2",
-        "label": "Image 2"
-      },
-      {
-        "type": "image_picker",
-        "id": "image_3",
-        "label": "Image 3"
-      },
-      {
-        "type": "image_picker",
-        "id": "image_4",
-        "label": "Image 4"
       }
     ]
   }
