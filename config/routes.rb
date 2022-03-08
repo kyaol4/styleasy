@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root :to => 'home#index'  #<<< SHOPIFY
   get '/products', :to => 'products#index'  #<<<<  SHOPIFY
   mount ShopifyApp::Engine, at: '/'  #<<<<< SHOPIFY
+  get '/download', :to => 'pages#home'
   devise_for :users
   # root to: 'pages#home' #<<<< LOCAL
   resources :items, only: [:show, :create]
