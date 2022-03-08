@@ -1,8 +1,50 @@
-  <%# <div data-controller="mediapipe">
-    <video hidden class="input_video"></video>
-    <canvas id="mediapipe" class="output_canvas" width="1280px" height="720px"></canvas>
-    <%= image_tag 'green-moncler-png.png', style: 'display:none', id: 'media-pipe' %>
+<%# <div data-controller="mediapipe"> %>
+<%# <video hidden class="input_video"></video> %>
+<%# <canvas id="mediapipe" class="output_canvas" width="1280px" height="720px"></canvas> %>
+<%# <%= image_tag 'green-moncler-png.png', style: 'display:none', id: 'media-pipe' %>
 <%# </div> %>
 
-<%# @clothing.mediapipe_width can be called in html views %>
-<%# @clothing.image_method %>
+<!-- Header -->
+<div class="d-flex justify-content-center m-5">
+  <%= image_tag "styleasylogo.png", style:"width: 200px" %>
+</div>
+
+<!-- Mask & flexbox options-->
+<%# <div class="mask rgba-black-light d-flex justify-content-center align-items-center"> %>
+
+<!-- Content -->
+<div class="container d-flex justify-content-between">
+  <!-- text section -->
+  <div>
+    <div class="container text-left" style="margin-top:4rem">
+      <h1>
+        YOUR SHORTCUT
+      </h1>
+      <h1>
+        TO THE
+      </h1>
+      <h1>
+        FITTING ROOM
+      </h1>
+    </div>
+    <div class="container text-left mt-5">
+      <p>
+        Let your customers try on new styles with <strong>one click</strong> in your Shopify store
+      </p>
+    </div>
+    <div class="container text-left mt-5">
+      <a target="_blank" href="https://styleasy-795.myshopify.com/admin/oauth/install_custom_app?client_id=6214e57f370e3e2e16dad4f8c5c991b2&signature=eyJfcmFpbHMiOnsibWVzc2FnZSI6ImV5SmxlSEJwY21WelgyRjBJam94TmpRM01qUTVOVFk0TENKd1pYSnRZVzVsYm5SZlpHOXRZV2x1SWpvaWMzUjViR1ZoYzNrdE56azFMbTE1YzJodmNHbG1lUzVqYjIwaUxDSmpiR2xsYm5SZmFXUWlPaUkyTWpFMFpUVTNaak0zTUdVelpUSmxNVFprWVdRMFpqaGpOV001T1RGaU1pSXNJbkIxY25CdmMyVWlPaUpqZFhOMGIyMWZZWEJ3SW4wPSIsImV4cCI6IjIwMjItMDMtMjFUMDk6MTk6MjguNDI2WiIsInB1ciI6bnVsbH19--195a42315acc96016394264a4211e058afd667f8" class="btn btn-primary btn-lg"><p class="m-1">Integrate with Shopify
+      <i class="fab fa-shopify"></i>
+      </p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Image section -->
+  <div class="mt-5">
+    <%= image_tag "pinkbg.png", style:"position: relative; width: 500px" %>
+    <%= image_tag "hero.png", style:"position: absolute; width: 500px; top: 200px; right: 200px" %>
+  </div>
+</div>
+
+
