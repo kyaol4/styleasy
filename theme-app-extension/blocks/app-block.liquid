@@ -1,192 +1,42 @@
+{% comment %} ADD THIS TO SEPERATE JSFILE IN ASSETS {% endcomment %}
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" defer="defer" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" defer="defer" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" defer="defer" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" defer="defer" crossorigin="anonymous"></script>
-<script type="module" defer="defer">
-
-const videoElement = document.getElementsByClassName("input_video")[0];
-    const canvasElement = document.getElementsByClassName("output_canvas")[0];
-    {
-      /* these are arrays mapping points of body location from video and onto canvas? */
-    }
-    const canvasCtx = canvasElement.getContext("2d");
-    let i = 0;
-    {
-      /* define variable turning canvasElement into a 2d pic? */
-    }
-
-
-    const initCloth = (results) => {
-      const img = document.getElementById("media-pipe");
-      const shoulderDistance = Math.abs(
-        results.poseLandmarks[12]["x"] - results.poseLandmarks[11]["x"]
-      );
-      const imgRatio = (img.height / img.width);
-      const width = shoulderDistance * 1.9;
-      const height = width * imgRatio;
-      const distShouldNeck = 0.34;
-      return {
-        element: img,
-        shoulderDistance: shoulderDistance,
-        width: width,
-        height: height,
-        xAxis:
-          results.poseLandmarks[0]["x"] - width / 2,
-        yAxis: results.poseLandmarks[12]["y"] + distShouldNeck,
-      };
-    };
-
-function onResults(results) {
-  const clothes = initCloth(results);
-      canvasCtx.save();
-      // save the 2d pic
-
-
-      canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-      canvasCtx.drawImage(
-        results.segmentationMask,
-        0,
-        0,
-        canvasElement.width,
-        canvasElement.height
-      );
-
-      let activeEffect = "mask";
-      // Only overwrite existing pixels. --> wtf this mean?
-      // canvasCtx.globalCompositeOperation = 'source-in';
-      // canvasCtx.fillStyle = 'none';
-      // canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
-      if (activeEffect === "mask" || activeEffect === "both") {
-        canvasCtx.globalCompositeOperation = "source-in";
-        // This can be a color or a texture or whatever...
-        canvasCtx.fillStyle = "#00000000";
-        canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
-      } else {
-        canvasCtx.globalCompositeOperation = "source-out";
-        canvasCtx.fillStyle = "#00000000";
-        canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
-      }
-
-  // Only overwrite existing pixels.
-  canvasCtx.globalCompositeOperation = 'source-in';
-  canvasCtx.fillStyle = '#00FF00';
-  canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
-
-  // Only overwrite missing pixels. -->
-      canvasCtx.globalCompositeOperation = "destination-atop";
-      canvasCtx.drawImage(
-        results.image,
-        0,
-        0,
-        canvasElement.width,
-        canvasElement.height
-      );
-      // console.log(results.poseLandmarks[0])
-      canvasCtx.globalCompositeOperation = "source-over";
-      // drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
-      //                {color: '#00FF00', lineWidth: 4});
-      // drawLandmarks(canvasCtx, results.poseLandmarks, {
-      //   color: "none",
-      //   lineWidth: "none",
-      // });
-
-
-      // drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION,
-      //                {color: '#C0C0C070', lineWidth: 1});
-
-
-      // drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {
-      //   color: "#CC0000",
-      //   lineWidth: 5,
-      // });
-      // drawLandmarks(canvasCtx, results.leftHandLandmarks, {
-      //   color: "#00FF00",
-      //   lineWidth: 2,
-      // });
-      // drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS, {
-      //   color: "#00CC00",
-      //   lineWidth: 5,
-      // });
-      // drawLandmarks(canvasCtx, results.rightHandLandmarks, {
-      //   color: "#FF0000",
-      //   lineWidth: 2,
-      // });
-      console.log(clothes);
-      canvasCtx.drawImage(
-        clothes.element,
-        clothes.xAxis * canvasElement.width,
-        canvasElement.height/2 - (1 - clothes.yAxis) * canvasElement.height,
-        clothes.width * canvasElement.width,
-        clothes.height * canvasElement.width
-      );
-      i += 1;
-  canvasCtx.restore();
-}
-
-const holistic = new Holistic({locateFile: (file) => {
-  return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
-}});
-holistic.setOptions({
-  modelComplexity: 1,
-  smoothLandmarks: true,
-  enableSegmentation: true,
-  smoothSegmentation: true,
-  refineFaceLandmarks: true,
-  minDetectionConfidence: 0.5,
-  minTrackingConfidence: 0.5
-});
-holistic.onResults(onResults);
-
-const camera = new Camera(videoElement, {
-  onFrame: async () => {
-    await holistic.send({image: videoElement});
-  },
-  width: 1280,
-  height: 720
-});
-camera.start();
-</script>
-
-<button id='ARbutton' type="submit" name="add" class="product-form__submit button button--full-width button--secondary">
-  <span>AR Dressing Room</span>
-  <div class="loading-overlay__spinner hidden">
-    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-    </svg>
-  </div>
-</button>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-   var button = document.getElementById("ARbutton");
-   var x = document.getElementById("AR");
-   console.log(button, x)
-   button.addEventListener('click', (event)=>{
-     console.log('check')
-      if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-                      })
-   });
-
-</script>
+<script type="module" defer="defer"></script>
 
 <div id='AR' style="display:none">
-  {% for image in product.images offset:2 limit:1 %}
+  {% for image in product.images offset:2 limit:1 %} {% comment %} WE NEED TO SET "PRODUCT" AS A VARIABLE IN SETTINGS IN SCHEMA {% endcomment %}
      {% assign imgSrc = image.src | img_url: '600x' %}
   {% endfor %}
   <video hidden class="input_video"></video>
   <canvas id="mediapipe" class="output_canvas" width="1100px" height="720px"></canvas>
-  <img src="https:{{imgSrc}}" class='hidden' id='media-pipe'>
+  <img src="https:{{imgSrc}}" class='hidden' id='media-pipe' width=image.width height=image.height>
 <!-- 	<video class="input_video"></video>
   <canvas class="output_canvas" width="1280px" height="720px"></canvas> -->
 </div>
 
-{% schema %}
+<script src="{{ 'mediapipe.js' | asset_url }}" defer></script>
+
+  {% schema %}
   {
     "name": "Test App",
     "target": "section",
+    "templates": ["product"],
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Test app"
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description",
+        "default": "A simple app block that shows a grid of images that can be customized by the merchant. Each image can be selected to show a popup with the full-sized image."
+      }
+    ]
   }
-  {% endschema %}
+{% endschema %}

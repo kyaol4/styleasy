@@ -1,10 +1,3 @@
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" defer="defer" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" defer="defer" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" defer="defer" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" defer="defer" crossorigin="anonymous"></script>
-<script type="module" defer="defer">
-
 const videoElement = document.getElementsByClassName("input_video")[0];
     const canvasElement = document.getElementsByClassName("output_canvas")[0];
     {
@@ -112,7 +105,7 @@ function onResults(results) {
       //   color: "#FF0000",
       //   lineWidth: 2,
       // });
-      console.log(clothes);
+      // console.log(clothes);
       canvasCtx.drawImage(
         clothes.element,
         clothes.xAxis * canvasElement.width,
@@ -146,47 +139,3 @@ const camera = new Camera(videoElement, {
   height: 720
 });
 camera.start();
-</script>
-
-<button id='ARbutton' type="submit" name="add" class="product-form__submit button button--full-width button--secondary">
-  <span>AR Dressing Room</span>
-  <div class="loading-overlay__spinner hidden">
-    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-    </svg>
-  </div>
-</button>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-   var button = document.getElementById("ARbutton");
-   var x = document.getElementById("AR");
-   console.log(button, x)
-   button.addEventListener('click', (event)=>{
-     console.log('check')
-      if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-                      })
-   });
-
-</script>
-
-<div id='AR' style="display:none">
-  {% for image in product.images offset:2 limit:1 %}
-     {% assign imgSrc = image.src | img_url: '600x' %}
-  {% endfor %}
-  <video hidden class="input_video"></video>
-  <canvas id="mediapipe" class="output_canvas" width="1100px" height="720px"></canvas>
-  <img src="https:{{imgSrc}}" class='hidden' id='media-pipe'>
-<!-- 	<video class="input_video"></video>
-  <canvas class="output_canvas" width="1280px" height="720px"></canvas> -->
-</div>
-
-{% schema %}
-  {
-    "name": "Test App",
-    "target": "section",
-  }
-  {% endschema %}
