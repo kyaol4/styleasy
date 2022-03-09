@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@shopify/polaris@4.25.0/styles.min.css"/>
+    <link
+    rel="stylesheet" href="assets/stylesheets/pages/install.scss"/>
+    <script>
+      document.addEventListener("DOMContentLoaded", async function() {
+
+
+        var SessionToken = window["app-bridge"].actions.SessionToken
+        var app = window.app;
+
+        app.dispatch(
+          SessionToken.request(),
+        );
+
+        // Save a session token for future requests
+        window.sessionToken = await new Promise((resolve) => {
+          app.subscribe(SessionToken.Action.RESPOND, (data) => {
+            resolve(data.sessionToken || "");
+          });
+        });
+
+        var fetchProducts = function() {
+          var headers = new Headers({ "Authorization": "Bearer " + window.sessionToken });
+          return fetch("/products", { headers })
+            .then(response => response.json())
+            .then(data => {
+              var products = data.products;
+
+              if (products === undefined || products.length == 0) {
+                document.getElementById("products").innerHTML = "<br>No products to display.";
+              } else {
+                var list = "";
+                products.forEach((product) => {
+                  var link = `<a target="_top" href="https://<%= @shop_origin %>/admin/products/${product.id}">`
+                  list += "<li>" + link + product.title + "</a></li>";
+                });
+                document.getElementById("products").innerHTML = "<ul>" + list + "</ul>";
+              }
+            });
+        }();
+      });
+    </script>
+  </head>
+
+<body style="background:rgba(245,245,245,1)">
+
+<!-- Header -->
+<div class="d-flex justify-content-center m-5">
+  <%= image_tag "styleasylogo.png", style:"width: 200px" %>
+</div>
+
+<div class="container text-center mt-5" style="font-size:24px">
+  <h1>GET SETUP IN <strong>3</strong> STEPS</h1>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center gy-5">
+    <div class="col-10">
+      <div class="card">
+        <%= image_tag "Setup1.png" %>
+          <div class="card-body p-3">
+            <p class="card-text p-3">Go to <strong>Online Store > Themes</strong> in your Menu.  Then <strong>Customize</strong> your current theme!</p>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-10">
+      <div class="card">
+        <%= image_tag "Setup2edit.png" %>
+          <div class="card-body p-3">
+            <p class="card-text p-3">On any <strong>Product</strong> page, <strong>Add section</strong> from the menu.  In <strong>Apps</strong> at the bottom, install <strong>Button</strong>.  Then repeat for <strong>Styleasy</strong>.
+            </p>
+          </div>
+      </div>
+    </div>
+    
+    <div class="col-10">
+      <div class="card">
+        <%= image_tag "Setup3.png" %>
+          <div class="card-body p-3">
+            <p class="card-text p-3">In your <strong>Apps</strong>, select <strong>Styleasy</strong> and upload an Image on the right side. Remember to <strong>Save</strong>!
+            </p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container text-center mt-5 mb-5 pt-5">
+  <h1 style="font-size:24px">
+    That's it!  You're done - go to <strong>Online Store</strong> and try it out now! 🎉
+  </h1>
+</div>
+<div style="padding:50px">
+</div>
+
+  </body>
+</html>
