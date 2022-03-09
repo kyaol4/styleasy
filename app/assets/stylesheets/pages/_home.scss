@@ -37,10 +37,21 @@ p {
   padding-top: 280px;
 }
 
+@media (max-width: 1300px) {
+  .divider-top {
+    padding-top: 160px; 
+  }
+}
+
+@media (max-width: 900px) {
+  .divider-top {
+    padding-top: 120px; 
+  }
+}
+
 .divider {
   padding: 100px;
 }
-
 
 // .arrow,
 // .arrow:before {
