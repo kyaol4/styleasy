@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@shopify/polaris@4.25.0/styles.min.css"
-      />
+      href="https://unpkg.com/@shopify/polaris@4.25.0/styles.min.css"/>
+    <link
+    rel="stylesheet" href="assets/stylesheets/pages/install.scss"/>
     <script>
       document.addEventListener("DOMContentLoaded", async function() {
 
@@ -47,78 +48,58 @@
       });
     </script>
   </head>
-  <body>
-<body>
-<h1 class="title" mt-2>STYLEASY Setup</h1>
-  <h2 mt-2> SETUP STYLEASY APP ASAP</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/styleasy/app/assets/images/Setup1.png" alt="Card image cap">
-  <div class="card-body">
-    <p class="card-text">Go to "Online Store" at bottom of left</p>
-  </div>
-  </div>
+
+<body style="background:rgba(245,245,245,1)">
+
+<!-- Header -->
+<div class="d-flex justify-content-center m-5">
+  <%= image_tag "styleasylogo.png", style:"width: 200px" %>
+</div>
+
+<div class="container text-center mt-5" style="font-size:24px">
+  <h1>GET SETUP IN <strong>3</strong> STEPS</h1>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center gy-5">
+    <div class="col-10">
+      <div class="card">
+        <%= image_tag "Setup1.png" %>
+          <div class="card-body p-3">
+            <p class="card-text p-3">Go to <strong>Online Store > Themes</strong> in your Menu.  Then <strong>Customize</strong> your current theme!</p>
+          </div>
+      </div>
     </div>
-    <div class="col-sm">
-      <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/styleasy/app/assets/images/Setup1.png" alt="Card image cap">
-  <div class="card-body">
-    <p class="card-text">Go to "Online Store" at bottom of left</p>
-  </div>
+
+    <div class="col-10">
+      <div class="card">
+        <%= image_tag "Setup2edit.png" %>
+          <div class="card-body p-3">
+            <p class="card-text p-3">On any <strong>Product</strong> page, <strong>Add section</strong> from the menu.  In <strong>Apps</strong> at the bottom, install <strong>Button</strong>.  Then repeat for <strong>Styleasy</strong>.
+            </p>
+          </div>
+      </div>
     </div>
-    <div class="col-sm">
-      <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/styleasy/app/assets/images/Setup1.png" alt="Card image cap">
-  <div class="card-body">
-    <p class="card-text">Go to "Online Store" at bottom of left</p>
-  </div>
-    </div>
-        <div class="col-sm">
-      <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/styleasy/app/assets/images/Setup1.png" alt="Card image cap">
-  <div class="card-body">
-    <p class="card-text">Go to "Online Store" at bottom of left</p>
-  </div>
-    </div>
-        <div class="col-sm">
-      <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="/styleasy/app/assets/images/Setup1.png" alt="Card image cap">
-  <div class="card-body">
-    <p class="card-text">Go to "Online Store" at bottom of left</p>
-  </div>
+    
+    <div class="col-10">
+      <div class="card">
+        <%= image_tag "Setup3.png" %>
+          <div class="card-body p-3">
+            <p class="card-text p-3">In your <strong>Apps</strong>, select <strong>Styleasy</strong> and upload an Image on the right side. Remember to <strong>Save</strong>!
+            </p>
+          </div>
+      </div>
     </div>
   </div>
 </div>
 
-  <%# <div class="container">
-    <ol class="list">
-      <li class="list-item">Go to "Online Store" at bottom of left</li>
-      <li class="list-item">Click "Themes" from left menu</li>
-      <li class="list-item">Click "Customize"</li>
-      <li class="list-item">Select a product from the drop down at top of page</li>
-      <li class="list-item">Click "Add section" from left menu</li>
-      <li class="list-item">Scroll down to "Apps" and add "Button"</li>
-      <li class="list-item">Scroll down to "Apps" and add "Test-app"</li>
-      <li class="list-item">Reposition "Button" and "Test-app" to desire positon</li>
-      <li class="list-item">Click "AR Camera" button to test</li>
-      <li class="list-item">Click "Save" in top right</li>
-      <li class="list-item">Sit back and wait for all that dollar to some flooding in $$$$</li>
-    </ol>
-  </div> %>
-    <div id="products"><br>Loading...</div>
+<div class="container text-center mt-5 mb-5 pt-5">
+  <h1 style="font-size:24px">
+    That's it!  You're done - go to <strong>Online Store</strong> and try it out now! 🎉
+  </h1>
+</div>
+<div style="padding:50px">
+</div>
 
-    <h2>Webhooks</h2>
-
-    <% if @webhooks.present? %>
-    <ul>
-      <% @webhooks.each do |webhook| %>
-      <li><%= webhook.topic %> : <%= webhook.address %></li>
-      <% end %>
-    </ul>
-    <% else %>
-    <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
-    <% end %>
   </body>
 </html>
