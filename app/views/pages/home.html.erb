@@ -1,17 +1,9 @@
-<%# <div data-controller="mediapipe"> %>
-<%# <video hidden class="input_video"></video> %>
-<%# <canvas id="mediapipe" class="output_canvas" width="1280px" height="720px"></canvas> %>
-<%# <%= image_tag 'green-moncler-png.png', style: 'display:none', id: 'media-pipe' %>
-<%# </div> %>
-
 <!-- Header -->
 <div class="d-flex justify-content-center m-5">
   <%= image_tag "styleasylogo.png", style:"width: 200px" %>
 </div>
-
 <!-- Mask & flexbox options-->
 <%# <div class="mask rgba-black-light d-flex justify-content-center align-items-center"> %>
-
 <!-- Content -->
 <div class="container d-flex justify-content-between">
   <!-- text section -->
@@ -27,23 +19,62 @@
         FITTING ROOM
       </h1>
     </div>
-    <div class="container text-left mt-5">
-      <p>
+    <div class="container text-left mt-5 pe-5">
+      <h2 class="lh-base">
         Let your customers try on new styles with <strong>one click</strong> in your Shopify store
-      </p>
+      </h2>
     </div>
-    <%# <div class="container text-left mt-5">
-      <a target="_blank" href="https://styleasy-795.myshopify.com/admin/oauth/install_custom_app?client_id=6214e57f370e3e2e16dad4f8c5c991b2&signature=eyJfcmFpbHMiOnsibWVzc2FnZSI6ImV5SmxlSEJwY21WelgyRjBJam94TmpRM01qUTVOVFk0TENKd1pYSnRZVzVsYm5SZlpHOXRZV2x1SWpvaWMzUjViR1ZoYzNrdE56azFMbTE1YzJodmNHbG1lUzVqYjIwaUxDSmpiR2xsYm5SZmFXUWlPaUkyTWpFMFpUVTNaak0zTUdVelpUSmxNVFprWVdRMFpqaGpOV001T1RGaU1pSXNJbkIxY25CdmMyVWlPaUpqZFhOMGIyMWZZWEJ3SW4wPSIsImV4cCI6IjIwMjItMDMtMjFUMDk6MTk6MjguNDI2WiIsInB1ciI6bnVsbH19--195a42315acc96016394264a4211e058afd667f8" class="btn btn-primary btn-lg"><p class="m-1">Integrate with Shopify
-      <i class="fab fa-shopify"></i> %>
-      <%# </p> %>
-      <%# </a> %>
-    <%# </div> %>
+    <div class="container text-left mt-5">
+      <a target="_blank" href="https://styleasy-795.myshopify.com/admin/oauth/install_custom_app?client_id=6214e57f370e3e2e16dad4f8c5c991b2&signature=eyJfcmFpbHMiOnsibWVzc2FnZSI6ImV5SmxlSEJwY21WelgyRjBJam94TmpRM01qUTVOVFk0TENKd1pYSnRZVzVsYm5SZlpHOXRZV2x1SWpvaWMzUjViR1ZoYzNrdE56azFMbTE1YzJodmNHbG1lUzVqYjIwaUxDSmpiR2xsYm5SZmFXUWlPaUkyTWpFMFpUVTNaak0zTUdVelpUSmxNVFprWVdRMFpqaGpOV001T1RGaU1pSXNJbkIxY25CdmMyVWlPaUpqZFhOMGIyMWZZWEJ3SW4wPSIsImV4cCI6IjIwMjItMDMtMjFUMDk6MTk6MjguNDI2WiIsInB1ciI6bnVsbH19--195a42315acc96016394264a4211e058afd667f8" class="btn btn-primary btn-lg">
+        <p class="m-1">Integrate with Shopify
+          <i class="fab fa-shopify"></i>
+        </p>
+      </a>
+    </div>
   </div>
-
   <!-- Image section -->
   <div class="mt-5">
     <%= image_tag "stylehero.png", style:"max-width:600px" %>
   </div>
 </div>
-
-
+<!-- Demo section -->
+<div class="container text-center mb-3 bottom-align">
+  <h2>
+    <strong>How it works</strong>
+  </h2>
+  <i class="fas fa-angle-down fa-fw fa-3x"></i>
+</div>
+<div class="divider-top">
+</div>
+<div class="container d-flex justify-content-around mx-5 mb-5">
+  <div data-controller="mediapipe">
+    <video hidden class="input_video"></video>
+    <canvas id="mediapipe" class="output_canvas rounded-3" width="800px" height="450px"></canvas>
+    <%= image_tag 'green-moncler-png.png', style: 'display:none', id: 'media-pipe' %>
+  </div>
+  <div class="container d-flex flex-column justify-content-center text-left ms-5 me-0">
+    <h1>
+      ANY OUTFIT  
+    </h1>
+    <h1>
+      ANYWHERE
+    </h1>
+    <h2 class="lh-base">
+      Bringing the store to you 
+    </h2>
+  </div>
+</div>
+<div class="cta divider">
+<div class="container text-center">
+  <h2>
+    <strong>INCREASE SALES TODAY</strong>🎉
+  </h2>
+  <div class="container text-center mt-3">
+    <a target="_blank" href="https://styleasy-795.myshopify.com/admin/oauth/install_custom_app?client_id=6214e57f370e3e2e16dad4f8c5c991b2&signature=eyJfcmFpbHMiOnsibWVzc2FnZSI6ImV5SmxlSEJwY21WelgyRjBJam94TmpRM01qUTVOVFk0TENKd1pYSnRZVzVsYm5SZlpHOXRZV2x1SWpvaWMzUjViR1ZoYzNrdE56azFMbTE1YzJodmNHbG1lUzVqYjIwaUxDSmpiR2xsYm5SZmFXUWlPaUkyTWpFMFpUVTNaak0zTUdVelpUSmxNVFprWVdRMFpqaGpOV001T1RGaU1pSXNJbkIxY25CdmMyVWlPaUpqZFhOMGIyMWZZWEJ3SW4wPSIsImV4cCI6IjIwMjItMDMtMjFUMDk6MTk6MjguNDI2WiIsInB1ciI6bnVsbH19--195a42315acc96016394264a4211e058afd667f8" class="btn btn-info btn-lg">
+      <p class="m-1">Integrate with Shopify
+        <i class="fab fa-shopify"></i>
+      </p>
+    </a>
+  </div>
+  </div>
+</div>

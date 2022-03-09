@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  root :to => 'home#index'  #<<< SHOPIFY
-  get '/products', :to => 'products#index'  #<<<<  SHOPIFY
-  mount ShopifyApp::Engine, at: '/'  #<<<<< SHOPIFY
+  # root :to => 'home#index'  #<<< SHOPIFY
+  # get '/products', :to => 'products#index'  #<<<<  SHOPIFY
+  # mount ShopifyApp::Engine, at: '/'  #<<<<< SHOPIFY
 
   get '/download', :to => 'pages#home'
 
