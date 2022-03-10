@@ -31,8 +31,10 @@ const videoElement = document.getElementsByClassName("input_video")[0];
     };
 
     let handsUp = false
+    let handsUp1 = false
 
     let hands = document.getElementById("next")
+    let hands1 = document.getElementById("prev")
 
 function onResults(results) {
   const clothes = initCloth(results);
@@ -129,6 +131,19 @@ function onResults(results) {
         handsUp = true
       } else if (results.poseLandmarks[20].y > results.poseLandmarks[0].y) {
        handsUp = false
+      }
+
+      if (results.poseLandmarks[19].y < results.poseLandmarks[0].y && handsUp1 == false) {
+        console.log("change!!!")
+        // hands.src=images[i]
+        // i += 1;
+        // if (i >= images.length) {
+        //   i = 0
+        // }
+        hands1.click()
+        handsUp1 = true
+      } else if (results.poseLandmarks[19].y > results.poseLandmarks[0].y) {
+       handsUp1 = false
       }
   canvasCtx.restore();
 }
