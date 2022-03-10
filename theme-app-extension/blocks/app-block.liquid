@@ -12,23 +12,58 @@
   <video hidden class="input_video"></video>
   <canvas id="mediapipe" class="output_canvas" width="1100px" height="720px"></canvas>
 
+{% comment %} image picker part {% endcomment %}
+<div class="clothes">
+{%- if product.images[2] -%}
+  <img class='hidden' id='img1' src="{{ product.images[2] | image_url: width: 1024 }}" alt="{{ product.images[2].alt }}" width="{{ product.images[2].width }}" height="{{ product.images[2].height }}">
+{%- endif -%}
+  {%- if product.images[3] -%}
+    <img class="hidden" id='img2' src="{{ product.images[3] | image_url: width: 1024 }}" alt="{{ product.images[3].alt }}" width="{{ product.images[3].width }}" height="{{ product.images[3].height }}">
+  {%- endif -%}
+  {%- if product.images[4] -%}
+    <img class="hidden" id='img3' src="{{ product.images[4] | image_url: width: 1024 }}" alt="{{ product.images[4].alt }}" width="{{ product.images[4].width }}" height="{{ product.images[4].height }}">
+  {%- endif -%}
+</div>
+
 {% comment %}
 <!-- <video hidden class="input_video"></video>
   <canvas class="output_canvas" width="1280px" height="720px"></canvas> -->
   {% endcomment %}
 
   <img src="https:{{imgSrc}}" class='hidden' id='media-pipe' width=image.width height=image.height>
+  <button type="button" onclick="displayPreviousImage()">Previous</button>
+  <button type="button" onclick="displayNextImage()">Next</button>
 
 </div>
 
 <script src="{{ 'mediapipe.js' | asset_url }}" defer></script>
+<script type = "text/javascript">
+  function displayNextImage() {
+      x = (x === images.length - 1) ? 0 : x + 1;
+      document.getElementById("media-pipe").src = images[x].src;
+  }
+
+  function displayPreviousImage() {
+      x = (x <= 0) ? images.length - 1 : x - 1;
+      document.getElementById("media-pipe").src = images[x].src;
+  }
+
+  function startTimer() {
+      setInterval(displayNextImage, 3000);
+  }
+
+  var images = [], x = -1;
+  images[0] = document.getElementById("img1");
+  images[1] = document.getElementById("img2");
+  images[2] = document.getElementById("img3");
+</script>
 
   {% schema %}
   {
     "name": "Styleasy-product",
     "target": "section",
     "stylesheet": "app-block.css",
-    "templates": ["product"],
+    "templates": ["product", "index"],
     "settings": [
       {
         "type": "text",
