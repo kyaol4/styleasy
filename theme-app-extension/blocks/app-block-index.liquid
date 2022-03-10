@@ -1,0 +1,97 @@
+{% comment %} ADD THIS TO SEPERATE JSFILE IN ASSETS {% endcomment %}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" defer="defer" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" defer="defer" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" defer="defer" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" defer="defer" crossorigin="anonymous"></script>
+<script type="module" defer="defer"></script>
+
+<div id='AR' style="display:none">
+  {% assign image = block.settings.image_3 %} {% comment %} WE NEED TO SET "PRODUCT" AS A VARIABLE IN SETTINGS IN SCHEMA {% endcomment %}
+  {% assign imgSrc = image.src | img_url: '600x' %}
+  <video hidden class="input_video"></video>
+  <canvas id="mediapipe" class="output_canvas" width="1100px" height="720px"></canvas>
+
+{% comment %} image picker part {% endcomment %}
+<div class="clothes">
+{%- if block.settings.image_1 -%}
+  <img class='hidden' id='img1' src="{{ block.settings.image_1 | image_url: width: 1024 }}" alt="{{ block.settings.image_1.alt }}" width="{{ block.settings.image_1.width }}" height="{{ block.settings.image_1.height }}">
+{%- endif -%}
+  {%- if block.settings.image_2 -%}
+    <img class="hidden" id='img2' src="{{ block.settings.image_2 | image_url: width: 1024 }}" alt="{{ block.settings.image_2.alt }}" width="{{ block.settings.image_2.width }}" height="{{ block.settings.image_2.height }}">
+  {%- endif -%}
+  {%- if block.settings.image_3 -%}
+    <img class="hidden" id='img3' src="{{ block.settings.image_3 | image_url: width: 1024 }}" alt="{{ block.settings.image_3.alt }}" width="{{ block.settings.image_3.width }}" height="{{ block.settings.image_3.height }}">
+  {%- endif -%}
+</div>
+
+{% comment %}
+<!-- <video hidden class="input_video"></video>
+  <canvas class="output_canvas" width="1280px" height="720px"></canvas> -->
+  {% endcomment %}
+
+  <img src="https:{{imgSrc}}" class='hidden' id='media-pipe' width=image.width height=image.height>
+  <button type="button" onclick="displayPreviousImage()">Previous</button>
+  <button type="button" onclick="displayNextImage()">Next</button>
+
+</div>
+
+<script src="{{ 'mediapipe.js' | asset_url }}" defer></script>
+<script type = "text/javascript">
+  function displayNextImage() {
+      x = (x === images.length - 1) ? 0 : x + 1;
+      document.getElementById("media-pipe").src = images[x].src;
+  }
+
+  function displayPreviousImage() {
+      x = (x <= 0) ? images.length - 1 : x - 1;
+      document.getElementById("media-pipe").src = images[x].src;
+  }
+
+  function startTimer() {
+      setInterval(displayNextImage, 3000);
+  }
+
+  var images = [], x = -1;
+  images[0] = document.getElementById("img1");
+  images[1] = document.getElementById("img2");
+  images[2] = document.getElementById("img3");
+</script>
+
+  {% schema %}
+  {
+    "name": "Styleasy-index",
+    "target": "section",
+    "stylesheet": "app-block.css",
+    "templates": ["index"],
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Styleasy"
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description",
+        "default": "A simple app block that shows a grid of images that can be customized by the merchant. Each image can be selected to show a popup with the full-sized image."
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_3",
+        "label": "Image 3"
+      }
+    ]
+  }
+{% endschema %}
