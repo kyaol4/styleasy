@@ -44,9 +44,15 @@ export default class extends Controller {
     };
 
     // let change = false
+    let handsUp = false
 
-    let hands = document.getElementById("media-pipe")
+    let hands = document.getElementById("gotcha")
     console.log(hands)
+
+    var images = [];
+    images[0] = document.getElementById("img1");
+    images[1] = document.getElementById("img2");
+    images[2] = document.getElementById("img3");
 
     // function changeClothes(results) {
     //   if (results.poseLandmarks[20].y < results.poseLandmarks[0].y) {
@@ -136,18 +142,26 @@ export default class extends Controller {
         clothes.height * canvasElement.width
       );
 
-      if (results.poseLandmarks[20].y < results.poseLandmarks[0].y) {
-        console.log("less than")
-        hands.src="https://google.github.io/mediapipe/images/mobile/pose_classification_pairwise_distances.png"
+      if (results.poseLandmarks[20].y < results.poseLandmarks[0].y && handsUp == false) {
+        console.log("change!!!")
+        // hands.src=images[i]
+        // i += 1;
+        // if (i >= images.length) {
+        //   i = 0
+        // }
+        hands.click()
+        handsUp = true
+      } else if (results.poseLandmarks[20].y > results.poseLandmarks[0].y) {
+       handsUp = false
       }
 
-      // if (change = false) {
+      // if (change === false) {
       //   hands.src="https://google.github.io/mediapipe/images/mobile/pose_classification_pairwise_distances.png"
       // } else {
       //   hands.src="tshirt.png"
       // }
 
-      i += 1;
+
       canvasCtx.restore();
 
       // console.log(results.poseLandmarks[11])
