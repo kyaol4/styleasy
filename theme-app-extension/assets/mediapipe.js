@@ -30,6 +30,10 @@ const videoElement = document.getElementsByClassName("input_video")[0];
       };
     };
 
+    let handsUp = false
+
+    let hands = document.getElementById("next")
+
 function onResults(results) {
   const clothes = initCloth(results);
       canvasCtx.save();
@@ -114,6 +118,18 @@ function onResults(results) {
         clothes.height * canvasElement.width
       );
       i += 1;
+      if (results.poseLandmarks[20].y < results.poseLandmarks[0].y && handsUp == false) {
+        console.log("change!!!")
+        // hands.src=images[i]
+        // i += 1;
+        // if (i >= images.length) {
+        //   i = 0
+        // }
+        hands.click()
+        handsUp = true
+      } else if (results.poseLandmarks[20].y > results.poseLandmarks[0].y) {
+       handsUp = false
+      }
   canvasCtx.restore();
 }
 
