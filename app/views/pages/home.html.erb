@@ -39,20 +39,22 @@
 </div>
 <!-- Demo section -->
 <div class="container text-center mt-3 mb-3 bottom-align">
-  <h2>
-    <strong>How it works</strong>
-  </h2>
-  <i class="fas fa-angle-down fa-fw fa-3x"></i>
-</div>
+  <a href="#snap">
+    <h2>
+      <strong>How it works</strong>
+    </h2>
+    <i class="fas fa-angle-down fa-fw fa-3x"></i>
+  </div>
+</a>
 <div class="divider-top">
 </div>
-<div class="container d-flex justify-content-center mb-5">
+<div id="snap" class="container d-flex justify-content-center mb-5">
   <div class="container ms-5">
-  <%= image_tag "toby-edit.png", class:"rounded-3 mt-5", style:"height:550px;max-width:600px;object-fit:fill" %>
-  <%# <div data-controller="mediapipe">
+    <%= image_tag "toby-edit.png", class:"rounded-3 mt-5", style:"height:550px;max-width:600px;object-fit:fill" %>
+    <%# <div data-controller="mediapipe">
     <video hidden class="input_video"></video>
     <canvas id="mediapipe" class="output_canvas rounded-3" width="800px" height="450px"></canvas>
-    <%= image_tag 'green-moncler-png.png', style: 'display:none', id: 'media-pipe' %> 
+    <%= image_tag 'green-moncler-png.png', style: 'display:none', id: 'media-pipe' %>
   </div>
   <div class="container d-flex flex-column justify-content-center text-left ms-3 me-0">
     <h1>
@@ -61,26 +63,68 @@
     <h1>
       ONLINE SHOPPING
     </h1>
-        <h2 class="lh-base">
+    <h2 class="lh-base">
       With any camera, your customers can try on your shop's fashion
     </h2>
   </div>
 </div>
 <div class="divider">
 </div>
-<div class="cta divider">
-
-<div class="container text-center">
-  <h2>
-    <strong>HIGHER SALES.  FEWER RETURNS.</strong>🎉
-  </h2>
-  <div class="container text-center mt-3">
-    <a target="_blank" href="https://styleasy.herokuapp.com/login" class="btn btn-info btn-lg">
-      <p class="m-1">Integrate with Shopify
-        <i class="fab fa-shopify"></i>
-      </p>
-    </a>
+<h1 class="mt-3 mb-5" style="text-align: center">
+  OUR CUSTOMERS
+</h1>
+<div class="container d-flex justify-content-around mb-5">
+  <div class="card m-3" style="width: 24rem;">
+    <div class="card-body">
+      <div class="container d-flex justify-content-start align-items-center">
+        <%= image_tag "cool-guy.jpg", class: "avatar-large me-3", alt: "avatar-large" %>
+        <div>
+          <h3 class="card-title ms-1 mt-1"><strong>Little G</strong></h3>
+          <h3 class="card-title ms-1">A better customer experience</h3>
+        </div>
+      </div>
+      <p class="container card-text py-3"><i>"Styleasy has increased my Shopify store sales by 90%!  My customers are converting at a much higher rate and buying more"</i></p>
+    </div>
+  </div>
+  <div class="card m-3" style="width: 24rem;">
+    <div class="card-body">
+      <div class="container d-flex justify-content-start align-items-center">
+        <%= image_tag "cool-girl.jpg", class: "avatar-large me-3", alt: "avatar-large" %>
+        <div>
+          <h3 class="card-title ms-1 mt-1"><strong>Black Widow</strong></h3>
+          <h3 class="card-title ms-1">Styleasy is amazing!</h3>
+        </div>
+      </div>
+        <p class="container card-text py-3"><i>"Love the instant ability for my customers to see what they look like in my designs "</i></p>
+    </div>
   </div>
 
+  <div class="card m-3" style="width: 24rem;">
+    <div class="card-body">
+      <div class="container d-flex justify-content-start align-items-center">
+        <%= image_tag "pikachu2.jpg", class: "avatar-large me-3", alt: "avatar-large" %>
+        <div>
+          <h3 class="card-title ms-1 mt-1"><strong>Pikachu</strong></h3>
+          <h3 class="card-title ms-1">Pika pika</h3>
+        </div>
+      </div>
+        <p class="container card-text py-3"><i>"Pikachuuuuuuuuuuuu"</i></p>
+    </div>
   </div>
 </div>
+  <div class="divider">
+  </div>
+  <div class="cta divider">
+    <div class="container text-center">
+      <h2>
+        <strong>HIGHER SALES.  FEWER RETURNS.</strong>🎉
+      </h2>
+      <div class="container text-center mt-3">
+        <a target="_blank" href="https://styleasy.herokuapp.com/login" class="btn btn-info btn-lg">
+          <p class="m-1">Integrate with Shopify
+            <i class="fab fa-shopify"></i>
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
